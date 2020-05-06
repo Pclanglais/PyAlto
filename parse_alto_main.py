@@ -99,7 +99,7 @@ def block_to_object(block_zone, namespace, list_style):
               begin_text.append(word_start + 1)
               word_start = word_start + 1 + len(content)
           else:
-            if word.get("SUBS_TYPE") == "HypPart1":
+            if (word.get("SUBS_TYPE") == "HypPart1") & (word.get("ID") is not None):
               hyphen_length = len(word.get("CONTENT"))-1
               id_text.append(word.get("ID") + "/" + str(hyphen_length))
               id_line_word.append(line_id)
@@ -131,9 +131,9 @@ def block_to_object(block_zone, namespace, list_style):
                 begin_text.append(word_start + 1)
                 word_start = word_start + 1 + len(content)
             elif word.get("SUBS_TYPE") == "HypPart2":
-              if not not id_line_word:
+              if (not not id_line_word) & (line_id is not None):
                 id_line_word[-1] = id_line_word[-1] + "+" + line_id
-              if not not id_text:
+              if (not not id_text) & (word.get("ID") is not None):
                 id_text[-1] = id_text[-1] + "+" + word.get("ID")
               if not not coordinate_text:
                 coordinate_text[-1] = coordinate_text[-1] + "+" + ";".join([word.get("HEIGHT"), word.get("HPOS"), word.get("WIDTH"), word.get("VPOS")])
@@ -303,7 +303,7 @@ def block_to_object(block_zone, namespace, list_style):
                   else:
                     begin_text.append(word_start + 1)
                     word_start = word_start + 1 + len(content)
-                elif word.get("SUBS_TYPE") == "HypPart2":
+                elif (word.get("SUBS_TYPE") == "HypPart2") & (line_id is not None):
                   try:
                     id_line_word[-1] = id_line_word[-1] + "+" + line_id
                   except IndexError: #In some very rare case there is a line index error.
