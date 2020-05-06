@@ -1,7 +1,7 @@
 # PyAlto
 A small python application to transform an ALTO file into a set of textual data
 
-To use it you just need to add the name of the file at the end of parse_alto.py, inside parse_alto_file.
+To use it you just need to add the name of the file at the end of PyAlto.py, inside parse_alto_file.
 
 PyAlto will generate several files that can be useful for different text mining applications:
 * A dataset of text blocks and illustrations with their associated coordinates and metadata.
